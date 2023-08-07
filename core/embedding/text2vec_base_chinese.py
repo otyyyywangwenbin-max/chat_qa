@@ -4,7 +4,7 @@ import numpy as np
 import requests
 import torch
 from transformers import BertTokenizer, BertModel
-from core import *
+from ..qa import *
 
 class Text2vecEmbedding(Embedding):
     

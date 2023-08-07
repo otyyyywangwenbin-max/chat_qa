@@ -4,7 +4,7 @@ import numpy as np
 import requests
 import torch
 from roformer import RoFormerTokenizer, RoFormerForCausalLM
-from core import *
+from ..qa import *
 
 class RoFormerEmbedding(Embedding):
     

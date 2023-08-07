@@ -5,7 +5,10 @@ from core.vectordb.chroma import ChromaDB
 
 llm = ChatGLM2("http://localhost:8000")
 embedding = Text2vecEmbedding()
-
+vectordb = ChromaDB(llm = llm, embedding = embedding)
 
 print(isinstance(llm, LLM))
+print(isinstance(embedding, Embedding))
+print(isinstance(vectordb, VectorDB))
+
 print(dir(llm))
