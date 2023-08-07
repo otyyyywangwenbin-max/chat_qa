@@ -23,7 +23,7 @@ class MyEmbeddingFunction(EmbeddingFunction):
 class ChromaDB(VectorDB):
 
     def __init__(self, embedding: Embedding, llm:LLM):
-        persist_directory = "chromadb"
+        persist_directory = "chromadb_data"
         collection_name = "primeton_qa"
         self.llm = llm
         self.client = chromadb.PersistentClient(path = persist_directory)
@@ -43,9 +43,11 @@ class ChromaDB(VectorDB):
                 text = data["a"]
             ids.append(data["id"])
             documents.append(text)
+            # TODO 注意如果text超长, 可以先做一次摘要
             embeddings.append(self.embedding.encode(text).tolist())
         self.collection.add(ids = ids, embeddings = embeddings, documents = documents)
     
     def query(self, query: str, topn: int = 2) -> List[str]:
+        # TODO 注意如果text超长, 可以先做一次摘要
         result = self.collection.query(query_embeddings=[self.embedding.encode(query).tolist()], n_results = topn)
         return sum(result["documents"], [])
