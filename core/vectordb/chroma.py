@@ -25,6 +25,7 @@ class ChromaDB(VectorDB):
     def __init__(self, embedding: Embedding, llm:LLM):
         persist_directory = "chromadb_data"
         collection_name = "primeton_qa"
+        self.embedding = embedding
         self.llm = llm
         self.client = chromadb.PersistentClient(path = persist_directory)
         self.collection = self.client.get_or_create_collection(name = collection_name
