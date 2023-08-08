@@ -11,4 +11,4 @@ loader = SimpleTextLoader()
 
 qa = QA(llm = llm, db = vectordb, loader = loader)
 
-qa.load("./test.text")
+qa.load("./test.txt")
