@@ -35,7 +35,7 @@ class ChromaDB(VectorDB):
         documents = []
         embeddings = []
         for data in datas:
-            if data.has_key("text"):
+            if "text" in data:
                 query = data["text"]
                 text = data["text"]
             else:
