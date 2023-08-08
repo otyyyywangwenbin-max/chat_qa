@@ -12,7 +12,7 @@ class SimpleTextLoader(Loader):
         with open(path) as file:
             for line in file:
                 data={}
-                data["id"] = path + "" + str(++i)
+                data["id"] = path + "_" + str(++i).zfill(6)
                 data["text"] = line;
                 datas.append(data)
         return datas
