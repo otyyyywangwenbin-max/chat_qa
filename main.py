@@ -11,7 +11,7 @@ loader = SimpleTextLoader()
 
 qa = QA(llm = llm, db = vectordb, loader = loader)
 
-qa.load("./doc/simple.txt")
+qa.load("./data/doc/simple.txt")
 
 questions = [
         "酒后驾驶会坐牢吗",

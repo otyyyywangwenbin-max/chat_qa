@@ -13,12 +13,12 @@ class RoFormerEmbedding(Embedding):
         self.tokenizer = RoFormerTokenizer.from_pretrained(pretrained_model)
         self.model = RoFormerForCausalLM.from_pretrained(pretrained_model)
 
-    def encode(self, text: str) -> np.ndarray:
+    def encode(self, text: str) -> List[float]:
         inputs = self.tokenizer(text, return_tensors="pt", max_length=384)
         with torch.no_grad():
             outputs = self.model.forward(**inputs)
             ## 是不是可以换成非cpu?
             embedding = outputs.pooler_output.cpu().numpy()[0]
-        return embedding
+        return embedding.tolist()
 
 

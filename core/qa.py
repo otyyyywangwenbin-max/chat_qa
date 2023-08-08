@@ -5,7 +5,7 @@ import numpy as np
 
 
 class Embedding():
-    def encode(self, text: str) -> np.ndarray:
+    def encode(self, text: str) -> List[float]:
         ...
 
 
@@ -34,7 +34,7 @@ class QA:
     """
     其实不用定义那么多class, 直接写在一个文件更简单, 更清楚, 
     最后肯定也只会用一种 "Embedding + VectorDB + LLM" 的组合
-    """
+    """ 
     db: VectorDB
     llm: LLM
     loader: Loader
@@ -45,6 +45,9 @@ class QA:
         self.loader = loader
 
     def load(self, path: str):
+        """
+        加载指定路径的知识文档
+        """ 
         datas = self.loader.load(path)
         self.db.add(datas)
 

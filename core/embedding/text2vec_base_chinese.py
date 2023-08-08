@@ -18,12 +18,12 @@ class Text2vecEmbedding(Embedding):
         input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
         return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
     
-    def encode(self, text: str) -> np.ndarray:
+    def encode(self, text: str) -> List[float]:
         ## 注意text长度, 太长会有问题
         input = self.tokenizer(text, padding=True, truncation=True, return_tensors='pt')
         with torch.no_grad():
             model_output = self.model(**input)
         embeddings = self.mean_pooling(model_output, input['attention_mask'])
-        return embeddings.numpy()[0]
+        return embeddings[0]
 
 
