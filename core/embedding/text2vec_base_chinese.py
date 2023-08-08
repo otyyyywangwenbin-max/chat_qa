@@ -19,6 +19,7 @@ class Text2vecEmbedding(Embedding):
         return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
     
     def encode(self, text: str) -> np.ndarray:
+        ## 注意text长度, 太长会有问题
         input = self.tokenizer(text, padding=True, truncation=True, return_tensors='pt')
         with torch.no_grad():
             model_output = self.model(**input)

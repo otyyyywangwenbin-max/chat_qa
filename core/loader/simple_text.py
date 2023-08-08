@@ -11,8 +11,9 @@ class SimpleTextLoader(Loader):
         i = 0
         with open(path) as file:
             for line in file:
+                i += 1
                 data={}
-                data["id"] = path + "_" + str(++i).zfill(6)
+                data["id"] = path + "_" + str(i).zfill(6)
                 data["text"] = line;
                 datas.append(data)
         return datas

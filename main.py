@@ -11,4 +11,15 @@ loader = SimpleTextLoader()
 
 qa = QA(llm = llm, db = vectordb, loader = loader)
 
-qa.load("./test.txt")
+qa.load("./doc/simple.txt")
+
+questions = [
+        "酒后驾驶会坐牢吗",
+        "高速上的最高速度是多少？",
+        "残障人士的机动轮椅车可以进入机动车道行驶吗",
+        "流程参与者报错: cann't find participant",
+    ]
+for question in questions:
+    print("=====")
+    print(qa.ask(question))
+    print("\n\n")
